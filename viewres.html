@@ -1,20 +1,72 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>The Dusty Chicken</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="jumbotron text-center">
-        <h1>The Dusty Chicken</h1>
-        <h2>Home of the Dusty Chicken</h2>
-        <div class="text-center">
-          <a href="home.html" class="btn btn-light m-3">Home</a>
-          <a href="addres.html" class="btn btn-info m-3">Make a Reservation</a>
-        </div>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <title>The Dusty Chicken</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="jumbotron text-center">
+      <h1>The Dusty Chicken</h1>
+      <h2>Home of the Dusty Chicken</h2>
+      <div class="text-center">
+        <a href="home.html" class="btn btn-light m-3">Home</a>
+        <a href="addres.html" class="btn btn-info m-3">Make a Reservation</a>
       </div>
     </div>
-  </body>
+  </div>
+  <!-- <div class="container"> -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Party Size</th>
+        <th scope="col">Phone</th>
+      </tr>
+    </thead>
+    <tbody id="reserve">
+      <!-- <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr> -->
+    </tbody>
+  </table>
+
+  <script type="text/javascript">
+    $("#search-btn").on("click", function() {
+      var searchedCharacter = $("#character-search").val().trim();
+
+      // Using a RegEx Pattern to remove spaces from searchedCharacter
+      // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+      searchedCharacter = searchedCharacter.replace(/\s+/g, "").toLowerCase();
+
+      $.get("/api/" + searchedCharacter, function(data) {
+        console.log(data);
+        if (data) {
+          for (var i = 0; i < data.length; i++) {
+            $("#reserve").append(data[i])
+          }
+
+          
+        }
+        else {
+          $("#name").text("The force is not strong with this one. Your character was not found.");
+          $("#stats").hide();
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
+
+</body>
+
 </html>
