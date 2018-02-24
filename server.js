@@ -15,13 +15,14 @@ app.use(bodyParser.json());
 
 
 // =============================================================
+console.log(Date.now());
 var resList = [
   {
      name: 'Julie Groth',
      email: 'julie@ucla.com',
      partySize: 5,
      phone: '323-111-2222',
-     time: 039239834
+     time: '039239834'
   }
 ];
 
@@ -44,24 +45,10 @@ app.get("/addres", function(req, res) {
    res.sendFile(path.join(__dirname, "addres.html"));
 });
 
-// Search for Specific Character (or all characters) - provides JSON
 app.get("/api", function(req, res) {
-//   var chosen = req.params.characters;
-
-//   if (chosen) {
-//     console.log(chosen);
-
-    for (var i = 0; i < resList.length; i++) {
-      if (chosen === characters[i].routeName) {
-        return res.json(characters[i]);
-      }
-    }
-    return res.json(false);
-  }
-  return res.json(characters);
+      return res.json(resList);
 });
 
-// Create New Characters - takes in JSON input
 app.post("/api/new", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body-parser middleware
