@@ -45,13 +45,13 @@ app.get("/addres", function(req, res) {
 });
 
 // Search for Specific Character (or all characters) - provides JSON
-app.get("/api/:characters?", function(req, res) {
-  var chosen = req.params.characters;
+app.get("/api", function(req, res) {
+//   var chosen = req.params.characters;
 
-  if (chosen) {
-    console.log(chosen);
+//   if (chosen) {
+//     console.log(chosen);
 
-    for (var i = 0; i < characters.length; i++) {
+    for (var i = 0; i < resList.length; i++) {
       if (chosen === characters[i].routeName) {
         return res.json(characters[i]);
       }
