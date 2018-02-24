@@ -50,17 +50,8 @@ app.get("/api", function(req, res) {
 });
 
 app.post("/api/new", function(req, res) {
-  // req.body hosts is equal to the JSON post sent from the user
-  // This works because of our body-parser middleware
-  var newcharacter = req.body;
-
-  console.log(newcharacter);
-
-  // We then add the json the user sent to the character array
-  characters.push(newcharacter);
-
-  // We then display the JSON to the users
-  res.json(newcharacter);
+  console.log(req.body);
+  resList.push(req.body);
 });
 
 // Starts the server to begin listening
