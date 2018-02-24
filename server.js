@@ -4,6 +4,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
 
+
 // Sets up the Express App
 // =============================================================
 var app = express();
@@ -49,9 +50,12 @@ app.get("/api", function(req, res) {
       return res.json(resList);
 });
 
+
+
 app.post("/api/new", function(req, res) {
   console.log(req.body);
   resList.push(req.body);
+  res.json('success');
 });
 
 // Starts the server to begin listening
