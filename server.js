@@ -50,12 +50,11 @@ app.get("/api", function(req, res) {
       return res.json(resList);
 });
 
-
-
 app.post("/api/new", function(req, res) {
-  console.log(req.body);
-  resList.push(req.body);
-  res.json('success');
+   console.log(req);
+   console.log(req.body);
+   resList.push(req.body);
+   res.json('success');
 });
 
 // Starts the server to begin listening
