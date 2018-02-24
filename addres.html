@@ -17,25 +17,51 @@
         <a href="viewres.html" class="btn btn-primary m-3">View Current Reservations</a>
       </div>
     </div>
-    <form class="" action="index.html" method="post">
-      <div class="form-group">
-        <label for="exampleFormControlInput1">Name</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Julie Bosslady">
-      </div>
-      <div class="form-group">
-        <label for="exampleFormControlInput1">Email address</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-      </div>
-      <div class="form-group">
-        <label for="exampleFormControlInput1">Party Size</label>
-        <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="0">
-      </div>
-      <div class="form-group">
-        <label for="exampleFormControlInput1">Phone Number</label>
-        <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="999-999-9999">
-      </div>
-    </form>
+    <div class="border border-solid">
+      <h2 class="bg bg-danger text-white text-center">Reserve Your Chicken</h2>
+      <form class="p-4" action="index.html" method="post">
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Name</label>
+          <input type="text" class="form-control" id="name" placeholder="Julie Bosslady">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Email address</label>
+          <input type="email" class="form-control" id="email" placeholder="name@example.com">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Party Size</label>
+          <input type="number" class="form-control" id="partySize" placeholder="0">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Phone Number</label>
+          <input type="number" class="form-control" id="phone" placeholder="999-999-9999">
+        </div>
+        <div class="form-group">
+          <input type="submit" class="btn btn-danger" id="add-chicken">
+        </div>
+      </form>
+    </div>
   </div>
+
+  <script type="text/javascript">
+    $("#add-chicken").on("click", function(event) {
+      event.preventDefault();
+      var newReservation = {
+        name: $("#name").val().trim(),
+        email: $("#email").val().trim(),
+        partySize: $("#partySize").val().trim(),
+        phone: $("#phone").val().trim(),
+        time: Date.now()
+      };
+
+      $.post("/api/new", newReservation)
+      .then(function(data) {
+        console.log(data);
+        alert("Your Chicken is Dusted");
+      });
+    });
+  </script>
+
 </body>
 
 </html>
